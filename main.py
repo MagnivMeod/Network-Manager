@@ -49,6 +49,7 @@ class socketServer(object):
     def get_client(self, client_ip):
         for dct in self.clients:
             if client_ip == dct["address"][0]:
+                print(dct)
                 return dct
 
 
@@ -144,11 +145,10 @@ class Program(object):
 
     def update_server_clients(self):
         while True:
+            addresses = []
             for client in self.server.clients:
-                address = client["address"][0]
-                if not address in self.combo1["values"]:
-                    self.combo1["values"] += address
-
+                addresses.append(client["address"][0])
+            self.combo1["values"] = addresses
             time.sleep(5)
 
     def execute_system_command(self):
